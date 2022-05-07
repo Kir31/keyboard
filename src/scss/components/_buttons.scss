@@ -1,0 +1,29 @@
+.button {    
+    width: 55px;
+    height: 55px;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    background: linear-gradient(#6279ac, #212544);
+    color: #ffffff;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: linear-gradient(#99b0e0, #4a5291);
+    }
+}
+
+.dark {    
+    color: #e9ec38;
+    background: linear-gradient(#434a5a, #1e202b);
+}
+
+#backspace, #tab, #del, #caps, #enter, #shift, #ctrl, #ctrl2 {
+    flex-grow: 1;
+}
+#shift2, #win {
+    padding: 10px 0;
+}
+#space {
+    flex-grow: 9;
+}

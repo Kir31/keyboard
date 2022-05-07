@@ -1,0 +1,140 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/style.scss ***!
+  \**************************************************************************************************************/
+body {
+  font-family: "Radio Canada", sans-serif;
+  font-size: 20px;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  background-color: transparent;
+}
+
+img {
+  border-style: none;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, [type=button], [type=reset], [type=submit] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[hidden] {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+.button {
+  width: 55px;
+  height: 55px;
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  background: linear-gradient(#6279ac, #212544);
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+.button:hover {
+  background: linear-gradient(#99b0e0, #4a5291);
+}
+
+.dark {
+  color: #e9ec38;
+  background: linear-gradient(#434a5a, #1e202b);
+}
+
+#backspace, #tab, #del, #caps, #enter, #shift, #ctrl, #ctrl2 {
+  flex-grow: 1;
+}
+
+#shift2, #win {
+  padding: 10px 0;
+}
+
+#space {
+  flex-grow: 9;
+}
+
+.container {
+  width: 900px;
+  margin: 30px auto;
+}
+
+.textarea {
+  width: 100%;
+  height: 150px;
+}
+
+.keyboard {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.raw {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+/*# sourceMappingURL=main.css.map*/
