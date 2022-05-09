@@ -23,24 +23,28 @@ export function createDarkBtn(raw, btn, id, text) {
 
         break;
       case 'CapsLock':
-
+        document.querySelectorAll('.button').forEach((b) => b.classList.toggle('caps'));
         break;
       case 'Enter':
         textareaArr.push('\n');
         textarea.value = textareaArr.join('');
         break;
       case 'ArrowUp':
-
+        textareaArr.push('↑');
+        textarea.value = textareaArr.join('');
         break;
       case 'ArrowLeft':
-
+        textareaArr.push('←');
+        textarea.value = textareaArr.join('');
         break;
       case 'ArrowDown':
-
+        textareaArr.push('↓');
+        textarea.value = textareaArr.join('');
         break;
       case 'ArrowRight':
+        textareaArr.push('→');
+        textarea.value = textareaArr.join('');
         break;
-
       default:
         break;
     }
@@ -72,7 +76,11 @@ export function formBtn(raw, btn, text, id) {
   button.innerHTML = `${text}`;
   button.setAttribute('id', `${id}`);
   button.addEventListener('click', () => {
-    textareaArr.push(`${text}`.toLowerCase());
+    if (button.classList.contains('caps')) {
+      textareaArr.push(`${text}`.toUpperCase());
+    } else {
+      textareaArr.push(`${text}`.toLowerCase());
+    }
     textarea.value = textareaArr.join('');
     button.classList.add('active');
   });
