@@ -1,0 +1,41 @@
+.button {    
+    width: 55px;
+    height: 55px;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    background: linear-gradient(#6279ac, #212544);
+    color: #ffffff;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: linear-gradient(#99b0e0, #4a5291);
+        cursor: pointer;
+    }    
+    &.active {    
+        background: linear-gradient(#b6479e, #661759);
+        box-shadow: 0 0 0 1.5em rgba(255, 255, 255, 0);
+        animation: pulse 1s;
+    }
+}
+
+.dark {    
+    color: #e9ec38;
+    background: linear-gradient(#434a5a, #1e202b);
+}
+
+#Backspace, #Tab, #Delete, #CapsLock, #Enter, #ShiftLeft, #ControlLeft, #ControlRight {
+    flex-grow: 1;
+}
+#ShiftRight, #MetaLeft {
+    padding: 10px 0;
+}
+#Space {
+    flex-grow: 9;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 #b6479e;
+    }
+}
