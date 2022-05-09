@@ -372,6 +372,115 @@ function styleTagTransform(css, styleElement) {
 
 module.exports = styleTagTransform;
 
+/***/ }),
+
+/***/ "./src/js/btns.js":
+/*!************************!*\
+  !*** ./src/js/btns.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createDarkBtn": () => (/* binding */ createDarkBtn),
+/* harmony export */   "formBtn": () => (/* binding */ formBtn),
+/* harmony export */   "formDarkBtns": () => (/* binding */ formDarkBtns),
+/* harmony export */   "formNumBtn": () => (/* binding */ formNumBtn),
+/* harmony export */   "textarea": () => (/* binding */ textarea),
+/* harmony export */   "textareaArr": () => (/* binding */ textareaArr)
+/* harmony export */ });
+const textarea = document.createElement('textarea');
+
+const textareaArr = [];
+
+function createDarkBtn(raw, btn, id, text) {
+  const button = document.querySelector(`.raw:nth-child(${raw}) .button:nth-child(${btn})`);
+  button.classList.add('dark');
+  button.setAttribute('id', id);
+  button.innerHTML = text;
+  button.addEventListener('click', () => {
+    button.classList.add('active');
+    button.addEventListener('animationend', () => button.classList.remove('active'));
+    switch (button.getAttribute('id')) {
+      case 'Backspace':
+        textareaArr.pop();
+        textarea.value = textareaArr.join('');
+        break;
+      case 'Tab':
+        textareaArr.push('        ');
+        textarea.value = textareaArr.join('');
+        break;
+      case 'Delete':
+
+        break;
+      case 'CapsLock':
+
+        break;
+      case 'Enter':
+        textareaArr.push('\n');
+        textarea.value = textareaArr.join('');
+        break;
+      case 'ArrowUp':
+
+        break;
+      case 'ArrowLeft':
+
+        break;
+      case 'ArrowDown':
+
+        break;
+      case 'ArrowRight':
+        break;
+
+      default:
+        break;
+    }
+  });
+}
+
+function formDarkBtns() {
+  createDarkBtn('1', '14', 'Backspace', 'Backspace');
+  createDarkBtn('1', '1', 'Backquote', '`');
+  createDarkBtn('2', '1', 'Tab', 'Tab');
+  createDarkBtn('2', '15', 'Delete', 'DEL');
+  createDarkBtn('3', '1', 'CapsLock', 'CapsLock');
+  createDarkBtn('3', '13', 'Enter', 'ENTER');
+  createDarkBtn('4', '1', 'ShiftLeft', 'Shift');
+  createDarkBtn('4', '12', 'ArrowUp', '&uarr;');
+  createDarkBtn('4', '13', 'ShiftRight', 'Shift');
+  createDarkBtn('5', '1', 'ControlLeft', 'Ctrl');
+  createDarkBtn('5', '2', 'MetaLeft', 'Win');
+  createDarkBtn('5', '3', 'AltLeft', 'Alt');
+  createDarkBtn('5', '5', 'AltRight', 'Alt');
+  createDarkBtn('5', '6', 'ControlRight', 'Ctrl');
+  createDarkBtn('5', '7', 'ArrowLeft', '&larr;');
+  createDarkBtn('5', '8', 'ArrowDown', '&darr;');
+  createDarkBtn('5', '9', 'ArrowRight', '&rarr;');
+}
+
+function formBtn(raw, btn, text, id) {
+  const button = document.querySelector(`.raw:nth-child(${raw}) .button:nth-child(${btn})`);
+  button.innerHTML = `${text}`;
+  button.setAttribute('id', `${id}`);
+  button.addEventListener('click', () => {
+    textareaArr.push(`${text}`.toLowerCase());
+    textarea.value = textareaArr.join('');
+    button.classList.add('active');
+  });
+  button.addEventListener('animationend', () => button.classList.remove('active'));
+}
+
+function formNumBtn(index) {
+  const button = document.querySelector(`.raw:nth-child(1) .button:nth-child(${index})`);
+  button.addEventListener('click', () => {
+    textareaArr.push(button.innerHTML);
+    textarea.value = textareaArr.join('');
+    button.classList.add('active');
+    button.addEventListener('animationend', () => button.classList.remove('active'));
+  });
+}
+
+
 /***/ })
 
 /******/ 	});
@@ -445,60 +554,28 @@ module.exports = styleTagTransform;
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scss/style.scss */ "./src/scss/style.scss");
+/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/style.scss */ "./src/scss/style.scss");
+/* harmony import */ var _btns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./btns */ "./src/js/btns.js");
+
 
 
 const body = document.querySelector('body');
 
 const container = document.createElement('div');
 const keyboard = document.createElement('div');
-const textarea = document.createElement('textarea');
 
 container.classList.add('container');
 keyboard.classList.add('keyboard');
-textarea.classList.add('textarea');
+_btns__WEBPACK_IMPORTED_MODULE_1__.textarea.classList.add('textarea');
+_btns__WEBPACK_IMPORTED_MODULE_1__.textarea.setAttribute('autofocus', '');
 
 body.append(container);
-container.append(textarea);
+container.append(_btns__WEBPACK_IMPORTED_MODULE_1__.textarea);
 container.append(keyboard);
-
-function createDarkBtn(btn, id, text) {
-  btn.classList.add('dark');
-  btn.setAttribute('id', id);
-  btn.innerHTML = text;
-}
-
-function formDarkBtns() {
-  createDarkBtn(document.querySelector('.raw:first-child .button:first-child'), 'backtick', '`');
-  createDarkBtn(document.querySelector('.raw:first-child .button:last-child'), 'backspace', 'Backspace');
-  createDarkBtn(document.querySelector('.raw:nth-child(2) .button:first-child'), 'tab', 'Tab');
-  createDarkBtn(document.querySelector('.raw:nth-child(2) .button:last-child'), 'del', 'DEL');
-  createDarkBtn(document.querySelector('.raw:nth-child(3) .button:first-child'), 'caps', 'Caps Lock');
-  createDarkBtn(document.querySelector('.raw:nth-child(3) .button:last-child'), 'enter', 'ENTER');
-  createDarkBtn(document.querySelector('.raw:nth-child(4) .button:first-child'), 'shift', 'Shift');
-  createDarkBtn(document.querySelector('.raw:nth-child(4) .button:nth-child(13)'), 'up', '&uarr;');
-  createDarkBtn(document.querySelector('.raw:nth-child(4) .button:last-child'), 'shift2', 'Shift');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:first-child'), 'ctrl', 'Ctrl');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:nth-child(2)'), 'win', 'Win');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:nth-child(3)'), 'alt', 'Alt');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:nth-child(5)'), 'alt2', 'Alt');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:nth-child(6)'), 'ctrl2', 'Ctrl');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:nth-child(7)'), 'left', '&larr;');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:nth-child(8)'), 'down', '&darr;');
-  createDarkBtn(document.querySelector('.raw:nth-child(5) .button:nth-child(9)'), 'right', '&rarr;');
-}
-
-function formBtn(raw, btn, text) {
-  const button = document.querySelector(`.raw:nth-child(${raw}) .button:nth-child(${btn})`);
-  button.innerHTML = `${text}`;
-  button.addEventListener('click', () => {
-    textarea.value = `${text}`.toLowerCase();
-  });
-}
 
 function createKeyboard() {
   for (let i = 0; i < 5; i += 1) {
@@ -510,8 +587,15 @@ function createKeyboard() {
     const btn = document.createElement('div');
     btn.classList.add('button');
     document.querySelector('.raw:first-child').append(btn);
-    if (i > 0 && i < 10) {
+    if (i > 0 && i < 11) {
       btn.innerHTML = i;
+      btn.setAttribute('id', `Digit${i}`);
+      _btns__WEBPACK_IMPORTED_MODULE_1__.formNumBtn(i);
+    }
+    if (i === 10) {
+      btn.innerHTML = 0;
+      btn.setAttribute('id', 'Digit0');
+      _btns__WEBPACK_IMPORTED_MODULE_1__.formNumBtn(i + 1);
     }
   }
   for (let i = 0; i < 15; i += 1) {
@@ -524,7 +608,7 @@ function createKeyboard() {
     btn.classList.add('button');
     document.querySelector('.raw:nth-child(3)').append(btn);
   }
-  for (let i = 0; i < 14; i += 1) {
+  for (let i = 0; i < 13; i += 1) {
     const btn = document.createElement('div');
     btn.classList.add('button');
     document.querySelector('.raw:nth-child(4)').append(btn);
@@ -534,46 +618,54 @@ function createKeyboard() {
     btn.classList.add('button');
     document.querySelector('.raw:last-child').append(btn);
   }
-  formDarkBtns();
-  document.querySelector('.raw:nth-child(5) .button:nth-child(4)').setAttribute('id', 'space');
-  formBtn('1', '11', '0');
-  formBtn('1', '12', '-');
-  formBtn('1', '13', '=');
-  formBtn('2', '2', 'Q');
-  formBtn('2', '3', 'W');
-  formBtn('2', '4', 'E');
-  formBtn('2', '5', 'R');
-  formBtn('2', '6', 'T');
-  formBtn('2', '7', 'Y');
-  formBtn('2', '8', 'U');
-  formBtn('2', '9', 'I');
-  formBtn('2', '10', 'O');
-  formBtn('2', '11', 'P');
-  formBtn('2', '12', '[');
-  formBtn('2', '13', ']');
-  formBtn('2', '14', '\\');
-  formBtn('3', '2', 'A');
-  formBtn('3', '3', 'S');
-  formBtn('3', '4', 'D');
-  formBtn('3', '5', 'F');
-  formBtn('3', '6', 'G');
-  formBtn('3', '7', 'H');
-  formBtn('3', '8', 'J');
-  formBtn('3', '9', 'K');
-  formBtn('3', '10', 'L');
-  formBtn('3', '11', ';');
-  formBtn('3', '12', '\'');
-  formBtn('4', '2', '\\');
-  formBtn('4', '3', 'Z');
-  formBtn('4', '4', 'X');
-  formBtn('4', '5', 'C');
-  formBtn('4', '6', 'V');
-  formBtn('4', '7', 'B');
-  formBtn('4', '8', 'N');
-  formBtn('4', '9', 'M');
-  formBtn('4', '10', '<');
-  formBtn('4', '11', '>');
-  formBtn('4', '12', '/');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formDarkBtns();
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('1', '12', '-', 'Minus');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('1', '13', '=', 'Equal');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '2', 'Q', 'KeyQ');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '3', 'W', 'KeyW');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '4', 'E', 'KeyE');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '5', 'R', 'KeyR');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '6', 'T', 'KeyT');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '7', 'Y', 'KeyY');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '8', 'U', 'KeyU');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '9', 'I', 'KeyI');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '10', 'O', 'KeyO');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '11', 'P', 'KeyP');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '12', '[', 'BracketLeft');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '13', ']', 'BracketRight');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('2', '14', '\\', 'Backslash');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '2', 'A', 'KeyA');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '3', 'S', 'KeyS');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '4', 'D', 'KeyD');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '5', 'F', 'KeyF');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '6', 'G', 'KeyG');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '7', 'H', 'KeyH');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '8', 'J', 'KeyJ');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '9', 'K', 'KeyK');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '10', 'L', 'KeyL');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '11', ';', 'Semicolon');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('3', '12', '\'', 'Quote');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '2', 'Z', 'KeyZ');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '3', 'X', 'KeyX');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '4', 'C', 'KeyC');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '5', 'V', 'KeyV');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '6', 'B', 'KeyB');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '7', 'N', 'KeyN');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '8', 'M', 'KeyM');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '9', ',', 'Comma');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '10', '.', 'Period');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('4', '11', '/', 'Slash');
+  _btns__WEBPACK_IMPORTED_MODULE_1__.formBtn('5', '4', ' ', 'Space');
+  document.addEventListener('keydown', (e) => {
+    document.querySelectorAll('.button').forEach((btn) => {
+      if (btn.getAttribute('id') === e.code) {
+        btn.classList.add('active');
+      }
+    });
+  });
+  document.addEventListener('keyup', () => {
+    document.querySelectorAll('.button').forEach((btn) => btn.classList.remove('active'));
+  });
 }
 createKeyboard();
 
